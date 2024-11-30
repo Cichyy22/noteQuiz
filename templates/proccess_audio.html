@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Przesyłanie Nagrania Audio</title>
+</head>
+<body>
+    <h1>Przesyłanie Nagrania Audio i FFT</h1>
+
+    <form method="post" enctype="multipart/form-data" action="{% url 'proccess_audio' %}">
+        {% csrf_token %}
+        <label for="audio_file">Wybierz plik audio:</label>
+        <input type="file" name="audio_file" accept=".mp3, .wav, .ogg">
+        <br>
+        <input type="submit" value="Prześlij">
+    </form>
+
+    <h2>Wynik:</h2>
+    {% if video_url %}
+        <video width="640" height="360" controls>
+            <source src="{{ video_url }}" type="video/mp4">
+            Twoja przeglądarka nie obsługuje odtwarzacza wideo.
+        </video>
+    {% endif %}
+</body>
+</html>
